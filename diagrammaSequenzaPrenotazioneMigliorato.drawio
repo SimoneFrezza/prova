@@ -1,0 +1,78 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Sequence Diagram - Prenotazione Tavolo" id="seq1">
+    <mxGraphModel dx="1220" dy="850" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Oggetti -->
+        <mxCell id="utente" value=":Utente" style="umlLifeline" vertex="1" parent="1">
+          <mxGeometry x="20" y="60" width="100" height="500" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="boundary" value="Boundary:PrenotazioneView" style="umlLifeline" vertex="1" parent="1">
+          <mxGeometry x="150" y="60" width="140" height="500" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="control" value="Control:PrenotazioneController" style="umlLifeline" vertex="1" parent="1">
+          <mxGeometry x="340" y="60" width="180" height="500" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="servizioPromo" value="Boundary:ServizioPromozione" style="umlLifeline" vertex="1" parent="1">
+          <mxGeometry x="560" y="60" width="160" height="500" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="entityTavolo" value="Entity:Tavolo" style="umlLifeline" vertex="1" parent="1">
+          <mxGeometry x="750" y="60" width="100" height="500" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="entityPromo" value="Entity:Promozione" style="umlLifeline" vertex="1" parent="1">
+          <mxGeometry x="880" y="60" width="120" height="500" as="geometry"/>
+        </mxCell>
+
+        <!-- Messaggi -->
+        <mxCell id="m1" value="prenotaTavolo(città, data)" style="endArrow=block;" edge="1" parent="1" source="utente" target="boundary">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="m2" value="inviaDatiPrenotazione()" style="endArrow=block;" edge="1" parent="1" source="boundary" target="control">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Alt block: Tavolo disponibile? -->
+        <mxCell id="altNote" value="alt: Tavolo disponibile?" style="shape=note;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="160" width="180" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="m3" value="verificaDisponibilità()" style="endArrow=block;" edge="1" parent="1" source="control" target="entityTavolo">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Loop block: per ogni promozione -->
+        <mxCell id="loopNote" value="loop: per ogni promozione valida" style="shape=note;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="260" width="260" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="m4" value="ottieniPromozioni()" style="endArrow=block;" edge="1" parent="1" source="control" target="servizioPromo">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="m5" value="getDettagliPromozione()" style="endArrow=block;" edge="1" parent="1" source="servizioPromo" target="entityPromo">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="m6" value="confermaPrenotazione()" style="endArrow=block;" edge="1" parent="1" source="control" target="entityTavolo">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="m7" value="conferma all'utente" style="endArrow=block;" edge="1" parent="1" source="control" target="boundary">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="m8" value="notificaConferma()" style="endArrow=block;" edge="1" parent="1" source="boundary" target="utente">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
